@@ -91,6 +91,7 @@ const getMarkIcons = (arr = [], parent = {}) => {
 }
 
 const getMdToAST = (data = [], parent = {}) => {
+  // The exported dataset contains Markdown structure only; HTML wrappers and site-only blocks are omitted.
   data = data.filter((m) => m.type !== 'html').map((child) => {
     if (child.position) {
       delete child.position
