@@ -6,6 +6,7 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 
 - [Pull Request Guidelines](#pull-request-guidelines)
 - [How to add to this list](#how-to-add-to-this-list)
+- [Building the project](#building-the-project)
 - [Updating your Pull Request](#updating-your-pull-request)
 
 ## Pull Request Guidelines
@@ -49,6 +50,21 @@ Use $awesome-mac-maintainer to check whether this app belongs in Screen Recordin
 If you use AI without this skill, please still make sure the final PR follows the repository's category, ordering, wording, and multilingual sync rules.
 
 Thank you for your suggestions!
+
+## Building the project
+
+The project uses Node.js 24 in CI. From the repository root, install the development dependencies with `npm install`, then use the scripts below as needed:
+
+| Command | Result |
+| --- | --- |
+| `npm run build` | Builds the documentation site into `doc/`, as configured in `idoc.yml`. |
+| `npm run create:ast` | Generates the English, Chinese, Japanese, and Korean JSON datasets in `dist/`. |
+| `npm start` | Runs the site build and generates the JSON datasets. |
+| `npm run feed` | Generates or incrementally updates the four localized RSS feeds in `feed/`. |
+
+The generated JSON datasets are written to `dist/`, which is gitignored. The documentation site output path is configured separately in `idoc.yml`. RSS XML files in `feed/` are tracked; running `npm run feed` may update them. The feed generator scans the latest 50 commits for each README and retains up to 50 feed items by default. These limits can be changed for a local run with `npm run feed -- --commit-limit=20 --item-limit=20`.
+
+The [npm package usage guide](./ES6-IMPORT-GUIDE.md) documents the published JSON import paths.
 
 ## How to add to this list
 
